@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeteoRInterfaceModel", "Met
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeteoRMobile", "MeteoRMobile\MeteoRMobile.csproj", "{3E7CD953-98EE-4D55-BDB8-886FBA22E594}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeteoRClient", "MeteoRClient\MeteoRClient.csproj", "{2D32EA03-E16C-4863-B035-0E0C46F553D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3E7CD953-98EE-4D55-BDB8-886FBA22E594}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E7CD953-98EE-4D55-BDB8-886FBA22E594}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E7CD953-98EE-4D55-BDB8-886FBA22E594}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2D32EA03-E16C-4863-B035-0E0C46F553D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D32EA03-E16C-4863-B035-0E0C46F553D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D32EA03-E16C-4863-B035-0E0C46F553D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D32EA03-E16C-4863-B035-0E0C46F553D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
