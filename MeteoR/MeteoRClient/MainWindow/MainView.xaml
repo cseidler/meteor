@@ -1,15 +1,20 @@
 ﻿<Window x:Class="MeteoRClient.MainWindow.MainView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:MeteoRClient.MainWindow"
         Title="MainView"
         Width="525"
         Height="350">
-    <StackPanel>
-        <!--  Image  -->
-        
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+    </Window.Resources>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="150"/>
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -21,26 +26,30 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="MeteoR" FontSize="50" Foreground="Blue" FontFamily="Comic Sans MS"/>
             <Image Grid.Row="0" Grid.Column="1" Source="/MainWindow\Images/suncloud.jpg"></Image>
-            <Button Grid.Row="1" Grid.ColumnSpan="2" Content="Get Result" />
+            <Button Grid.Row="1" Grid.ColumnSpan="2" Margin="20,5" Content="Get Result" />
             <Label Grid.Row="2"
                      Grid.Column="0"
-                     Content="Temperature" />
+                     Content="Temperature"
+                     Margin="15,0,0,0"/>
             <Label Grid.Row="3"
                      Grid.Column="0"
-                     Content="Humidity" />
+                     Content="Humidity"
+                     Margin="15,0,0,0"/>
             <Label Grid.Row="4"
                      Grid.Column="0"
-                     Content="Pressure" />
+                     Content="Pressure"
+                     Margin="15,0,0,0"/>
             <Label Grid.Row="2"
-                     Grid.Column="1"
-                     Content="20°" />
+                     Grid.Column="1">
+                <TextBlock Text="{Binding Temperature, StringFormat={}{0} °C}" />
+            </Label>
             <Label Grid.Row="3"
-                     Grid.Column="1"
-                     Content="30%" />
+                     Grid.Column="1">
+                <TextBlock Text="{Binding Humidity, StringFormat={}{0} %}" />
+            </Label>
             <Label Grid.Row="4"
-                     Grid.Column="1
-                   "
-                     Content="101 kPa" />
+                     Grid.Column="1">
+                <TextBlock Text="{Binding Pressure, StringFormat={}{0} kPa}" />
+            </Label>
         </Grid>
-    </StackPanel>
 </Window>
