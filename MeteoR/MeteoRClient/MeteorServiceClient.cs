@@ -7,7 +7,7 @@
 
     using MeteoRInterfaceModel;
 
-    public class MeteorServiceClient
+    public class MeteorServiceClient : IMeteorServiceClient
     {
         private const string ServiceUri = "http://localhost:3074/api/weatherinfo";
 
