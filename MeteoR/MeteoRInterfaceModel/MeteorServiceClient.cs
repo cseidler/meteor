@@ -1,11 +1,9 @@
-﻿namespace MeteoRClient
+﻿namespace MeteoRInterfaceModel
 {
-    using System.IO;
     using System.Net.Http;
-
     using System.Threading.Tasks;
 
-    using MeteoRInterfaceModel;
+    using MeteoRClient;
 
     public class MeteorServiceClient : IMeteorServiceClient
     {
@@ -15,7 +13,7 @@
         {
             using (var httpClient = new HttpClient())
             {
-                var response = await httpClient.GetAsync(Path.Combine(ServiceUri, string.Format("id={0}&timestamp={1}", id, timestamp))).ConfigureAwait(false);
+                var response = await httpClient.GetAsync(string.Format("{0}id={1}&timestamp={2}", ServiceUri, id, timestamp)).ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
 
                 return await response.Content.ReadAsAsync<WeatherInfo>().ConfigureAwait(false);
