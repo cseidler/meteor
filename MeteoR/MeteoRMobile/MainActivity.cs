@@ -4,6 +4,8 @@ using Android.OS;
 
 namespace MeteoRMobile
 {
+    using System;
+
     [Activity(Label = "MeteoRMobile", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
@@ -17,7 +19,7 @@ namespace MeteoRMobile
 
             // Get our button from the layout resource,
             // and attach an event to it
-            receiveDataButton.Click += (object sender, EventArgs e) =>
+            receiveDataButton.Click += (sender, e) =>
             {
                 // Translate user’s alphanumeric phone number to numeric
                 // receive Data
