@@ -171,6 +171,8 @@ namespace MeteoRMobile
 			{
 			}
 		}
+			}
+		}
 	}
 }
 #pragma warning restore 1591

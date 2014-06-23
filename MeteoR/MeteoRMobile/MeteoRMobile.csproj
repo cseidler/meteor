@@ -75,6 +75,12 @@
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MeteoRInterfaceModel\MeteoRInterfaceModel.csproj">
+      <Project>{23e2d428-39f5-4c40-bbc4-2738a5f54867}</Project>
+      <Name>MeteoRInterfaceModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.
