@@ -84,6 +84,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MainWindow\GetResultsCommand.cs" />
+    <Compile Include="MainWindow\IGetResultsCommand.cs" />
     <Compile Include="MainWindow\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>

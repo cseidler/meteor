@@ -5,6 +5,8 @@
 
     using MeteoRClient.Annotations;
 
+    using MeteoRInterfaceModel;
+
     public class MainViewModel : INotifyPropertyChanged
     {
         private double temperature;
@@ -17,9 +19,15 @@
 
         public MainViewModel()
         {
-            this.Temperature = 20.94;
-            this.Pressure = 99.9;
-            this.Humidity = 42;
+            this.GetResultsCommand = new GetResultsCommand(new MeteorServiceClient(), new DateTimeToUnixConverter());
+            this.GetResultsCommand.ResultsChanged += this.HandleResultsChanged;
+        }
+
+        void HandleResultsChanged(object sender, System.EventArgs e)
+        {
+            this.Temperature = this.GetResultsCommand.Temperature;
+            this.Humidity = this.GetResultsCommand.Humidity;
+            this.Pressure = this.GetResultsCommand.Pressure;
         }
 
         public double Temperature
@@ -78,6 +86,8 @@
                 this.OnPropertyChanged();
             }
         }
+
+        public IGetResultsCommand GetResultsCommand { get; private set; }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
