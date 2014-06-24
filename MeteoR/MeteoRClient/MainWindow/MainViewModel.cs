@@ -7,8 +7,10 @@
 
     using MeteoRInterfaceModel;
 
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : IMainViewModel
     {
+        private readonly ICommandFactory commandFactory;
+
         private double? temperature;
 
         private int? humidity;
@@ -21,10 +23,11 @@
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainViewModel()
+        public MainViewModel(ICommandFactory commandFactory)
         {
+            this.commandFactory = commandFactory;
             this.CityName = null;
-            this.GetResultsCommand = new GetResultsCommand(this, new MeteorServiceClient(), new DateTimeToUnixConverter());
+            this.GetResultsCommand = this.commandFactory.CreateCommand(this);
         }
 
         public double? Temperature

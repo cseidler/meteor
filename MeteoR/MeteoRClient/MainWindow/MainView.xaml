@@ -4,9 +4,6 @@
         Title="MainView"
         Width="525"
         Height="388">
-    <Window.DataContext>
-        <local:MainViewModel/>
-    </Window.DataContext>
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />

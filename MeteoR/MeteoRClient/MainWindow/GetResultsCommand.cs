@@ -12,7 +12,7 @@
     {
         private const int StationId = 1234;
 
-        private readonly MainViewModel viewModel;
+        private readonly IMainViewModel viewModel;
 
         private readonly IMeteorServiceClient meteorServiceClient;
 
@@ -20,7 +20,7 @@
 
         private bool isUpdating = false;
 
-        public GetResultsCommand(MainViewModel viewModel, IMeteorServiceClient meteorServiceClient, IDateTimeToUnixConverter dateTimeToUnixConverter)
+        public GetResultsCommand(IMainViewModel viewModel, IMeteorServiceClient meteorServiceClient, IDateTimeToUnixConverter dateTimeToUnixConverter)
         {
             this.viewModel = viewModel;
             this.meteorServiceClient = meteorServiceClient;
