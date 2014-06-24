@@ -1,6 +1,10 @@
 ﻿namespace MeteoRClient.MainWindow
 {
     using System;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+
+    using MeteoRClient.Properties;
 
     using MeteoRInterfaceModel;
 
@@ -8,51 +12,71 @@
     {
         private const int StationId = 1234;
 
+        private readonly MainViewModel viewModel;
+
         private readonly IMeteorServiceClient meteorServiceClient;
 
         private readonly IDateTimeToUnixConverter dateTimeToUnixConverter;
 
-        public GetResultsCommand(IMeteorServiceClient meteorServiceClient, IDateTimeToUnixConverter dateTimeToUnixConverter)
+        private bool isUpdating = false;
+
+        public GetResultsCommand(MainViewModel viewModel, IMeteorServiceClient meteorServiceClient, IDateTimeToUnixConverter dateTimeToUnixConverter)
         {
+            this.viewModel = viewModel;
             this.meteorServiceClient = meteorServiceClient;
             this.dateTimeToUnixConverter = dateTimeToUnixConverter;
         }
 
         public event EventHandler CanExecuteChanged;
 
-        public event EventHandler ResultsChanged;
-
-        public double Temperature { get; private set; }
-
-        public double Pressure { get; private set; }
-
-        public int Humidity { get; private set; }
-
-        public string CityName { get; set; }
-
         public bool CanExecute(object parameter)
         {
-            return true;
+            return !this.isUpdating;
         }
 
         public async void Execute(object parameter)
         {
-            var utcNowAsUnixTimestamp = this.dateTimeToUnixConverter.DateTimeToUnixTimeStamp(DateTime.UtcNow);
-            var weatherInfo = await this.meteorServiceClient.GetWeatherInfo(StationId, utcNowAsUnixTimestamp);
+            try
+            {
+                this.SetIsUpdating(true);
+                this.viewModel.Status = Resources.GetResultsCommandUpdatingValues;
 
-            this.Temperature = weatherInfo.Temperature;
-            this.Pressure = weatherInfo.Pressure;
-            this.Humidity = weatherInfo.Humidity;
-            this.CityName = weatherInfo.CityName;
+                var weatherInfo = await this.GetWeatherInfoFromService();
 
-            this.OnResultsChanged();
+                this.UpdateViewModel(weatherInfo);
+                this.viewModel.Status = string.Empty;
+            }
+            catch (HttpRequestException e)
+            {
+                this.viewModel.Status = e.Message;
+            }
+            finally
+            {
+                this.SetIsUpdating(false);
+            }
         }
 
-        private void OnResultsChanged()
+        private async Task<WeatherInfo> GetWeatherInfoFromService()
         {
-            if (this.ResultsChanged != null)
+            var utcNowAsUnixTimestamp = this.dateTimeToUnixConverter.DateTimeToUnixTimeStamp(DateTime.UtcNow);
+            var weatherInfo = await this.meteorServiceClient.GetWeatherInfo(StationId, utcNowAsUnixTimestamp);
+            return weatherInfo;
+        }
+
+        private void UpdateViewModel(WeatherInfo weatherInfo)
+        {
+            this.viewModel.Temperature = weatherInfo.Temperature;
+            this.viewModel.Pressure = weatherInfo.Pressure;
+            this.viewModel.Humidity = weatherInfo.Humidity;
+            this.viewModel.CityName = weatherInfo.CityName;
+        }
+
+        private void SetIsUpdating(bool updating)
+        {
+            this.isUpdating = updating;
+            if (this.CanExecuteChanged != null)
             {
-                this.ResultsChanged(this, EventArgs.Empty);
+                this.CanExecuteChanged(this, EventArgs.Empty);
             }
         }
     }
