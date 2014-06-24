@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/stationIdInput"
-        android:text="Please enter station id..." />
+        android:hint="Please enter station id..." />
     <Button
         android:text="Receive data"
         android:layout_width="match_parent"
