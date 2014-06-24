@@ -40,6 +40,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateTimeToUnixConverter.cs" />
+    <Compile Include="IDateTimeToUnixConverter.cs" />
     <Compile Include="IMeteorServiceClient.cs" />
     <Compile Include="MeteorServiceClient.cs" />
     <Compile Include="WeatherInfo.cs" />
