@@ -28,6 +28,8 @@
 
         public int Humidity { get; private set; }
 
+        public string CityName { get; set; }
+
         public bool CanExecute(object parameter)
         {
             return true;
@@ -41,6 +43,7 @@
             this.Temperature = weatherInfo.Temperature;
             this.Pressure = weatherInfo.Pressure;
             this.Humidity = weatherInfo.Humidity;
+            this.CityName = weatherInfo.CityName;
 
             this.OnResultsChanged();
         }

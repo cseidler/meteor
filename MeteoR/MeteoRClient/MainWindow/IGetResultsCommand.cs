@@ -12,5 +12,7 @@
         double Pressure { get; }
 
         int Humidity { get; }
+
+        string CityName { get; set; }
     }
 }

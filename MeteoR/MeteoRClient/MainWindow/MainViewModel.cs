@@ -15,6 +15,8 @@
 
         private double pressure;
 
+        private string cityName;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainViewModel()
@@ -28,6 +30,7 @@
             this.Temperature = this.GetResultsCommand.Temperature;
             this.Humidity = this.GetResultsCommand.Humidity;
             this.Pressure = this.GetResultsCommand.Pressure;
+            this.CityName = this.GetResultsCommand.CityName;
         }
 
         public double Temperature
@@ -83,6 +86,25 @@
                 }
 
                 this.pressure = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public string CityName
+        {
+            get
+            {
+                return this.cityName;
+            }
+
+            set
+            {
+                if (value == this.cityName)
+                {
+                    return;
+                }
+
+                this.cityName = value;
                 this.OnPropertyChanged();
             }
         }
