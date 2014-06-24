@@ -26,6 +26,7 @@ namespace MeteoRMobile
         private TextView stationIdInput;
         private MeteorServiceClient service;
         private WeatherInfo weatherInfo;
+        private int stationId;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -40,7 +41,7 @@ namespace MeteoRMobile
             pressureData = FindViewById<TextView>(Resource.Id.pressureData);
             humidityData = FindViewById<TextView>(Resource.Id.humidityData);
 
-            var stationId = Intent.Extras.Get("stationId").ToString();
+            stationId = int.Parse(Intent.Extras.Get("stationId").ToString());
             service = new MeteorServiceClient();
 
             this.CallService();
@@ -50,29 +51,28 @@ namespace MeteoRMobile
         {
             try
             {
-                weatherInfo = await this.service.GetWeatherInfo(123, 456);
+                weatherInfo = await this.service.GetWeatherInfo(stationId, 456);
+
+                RunOnUiThread(() =>
+                {
+                    //stationIdData.Text = "1";
+                    //cityNameData.Text = "Moskau";
+                    //timestampData.Text = DateTime.Now.ToShortDateString().ToString(CultureInfo.InvariantCulture);
+                    //temperatureData.Text = "18";
+                    //pressureData.Text = "886";
+                    //humidityData.Text = "20";
+                    stationIdData.Text = weatherInfo.Id.ToString(CultureInfo.InvariantCulture);
+                    cityNameData.Text = weatherInfo.CityName;
+                    timestampData.Text = weatherInfo.Timestamp.ToString(CultureInfo.InvariantCulture);
+                    temperatureData.Text = weatherInfo.Temperature.ToString(CultureInfo.InvariantCulture);
+                    pressureData.Text = weatherInfo.Pressure.ToString(CultureInfo.InvariantCulture);
+                    humidityData.Text = weatherInfo.Humidity.ToString(CultureInfo.InvariantCulture);
+                });
             }
             catch (Exception exception)
             {
                 Console.WriteLine(string.Format("Exception message: {0}", exception.Message));
             }
-            RunOnUiThread(() => { });
-
-            stationIdData.Text = "1";
-            cityNameData.Text = "Moskau";
-            timestampData.Text = DateTime.Now.ToShortDateString().ToString(CultureInfo.InvariantCulture);
-            temperatureData.Text = "18";
-            pressureData.Text = "886";
-            humidityData.Text = "20";
-
-
-            stationIdData.Text = weatherInfo.Id.ToString(CultureInfo.InvariantCulture);
-            cityNameData.Text = weatherInfo.CityName;
-            timestampData.Text = weatherInfo.Timestamp.ToString(CultureInfo.InvariantCulture);
-            temperatureData.Text = weatherInfo.Temperature.ToString(CultureInfo.InvariantCulture);
-            pressureData.Text = weatherInfo.Pressure.ToString(CultureInfo.InvariantCulture);
-            humidityData.Text = weatherInfo.Humidity.ToString(CultureInfo.InvariantCulture);
-            
         }
     }
 }
