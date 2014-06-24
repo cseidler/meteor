@@ -17,8 +17,9 @@
 
         public async Task<WeatherInfo> GetWeatherInfo(int id, long timestamp)
         {
-            var restRequest = new RestRequest(string.Format("{0}?id={1}&timestamp={2}", ServiceUri, id, timestamp), HttpMethod.Get);
-            IRestResponse restResponse = await new RestClient().Execute(restRequest).ConfigureAwait(false);
+            var restRequest = new RestRequest(string.Format("?id={0}&timestamp={1}", id, timestamp), HttpMethod.Get);
+            var restClient = new RestClient(ServiceUri);
+            IRestResponse restResponse = await restClient.Execute(restRequest).ConfigureAwait(false);
             TextReader reader = new StringReader(Convert.ToBase64String(restResponse.RawBytes));
             return new JsonSerializer().Deserialize<WeatherInfo>(new JsonTextReader(reader));
         }
