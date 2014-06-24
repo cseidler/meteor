@@ -9,11 +9,11 @@
 
     public class MainViewModel : INotifyPropertyChanged
     {
-        private double temperature;
+        private double? temperature;
 
-        private int humidity;
+        private int? humidity;
 
-        private double pressure;
+        private double? pressure;
 
         private string cityName;
 
@@ -21,6 +21,7 @@
 
         public MainViewModel()
         {
+            this.CityName = null;
             this.GetResultsCommand = new GetResultsCommand(new MeteorServiceClient(), new DateTimeToUnixConverter());
             this.GetResultsCommand.ResultsChanged += this.HandleResultsChanged;
         }
@@ -33,7 +34,7 @@
             this.CityName = this.GetResultsCommand.CityName;
         }
 
-        public double Temperature
+        public double? Temperature
         {
             get
             {
@@ -52,7 +53,7 @@
             }
         }
 
-        public int Humidity
+        public int? Humidity
         {
             get
             {
@@ -71,7 +72,7 @@
             }
         }
 
-        public double Pressure
+        public double? Pressure
         {
             get
             {

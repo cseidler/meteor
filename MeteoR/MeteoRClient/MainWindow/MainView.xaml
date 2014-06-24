@@ -46,19 +46,19 @@
                      Margin="15,0,0,0"/>
             <Label Grid.Row="2"
                      Grid.Column="1">
-                <TextBlock Text="{Binding CityName}" />
+            <TextBlock Text="{Binding Path=CityName, TargetNullValue='n/a'}" />
             </Label>
             <Label Grid.Row="3"
                      Grid.Column="1">
-                <TextBlock Text="{Binding Temperature, StringFormat={}{0} °C}" />
+            <TextBlock Text="{Binding Path=Temperature, TargetNullValue='n/a', StringFormat={}{0} °C}" />
             </Label>
             <Label Grid.Row="4"
                      Grid.Column="1">
-                <TextBlock Text="{Binding Humidity, StringFormat={}{0} %}" />
+                <TextBlock Text="{Binding Path=Humidity, TargetNullValue='n/a', StringFormat={}{0} %}" />
             </Label>
             <Label Grid.Row="5"
                      Grid.Column="1">
-                <TextBlock Text="{Binding Pressure, StringFormat={}{0} kPa}" />
+            <TextBlock Text="{Binding Path=Pressure, TargetNullValue='n/a', StringFormat={}{0} kPa}" />
             </Label>
         </Grid>
 </Window>
