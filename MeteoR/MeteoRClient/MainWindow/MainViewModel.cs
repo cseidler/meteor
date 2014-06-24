@@ -7,33 +7,30 @@
 
     using MeteoRInterfaceModel;
 
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : IMainViewModel
     {
-        private double temperature;
+        private readonly ICommandFactory commandFactory;
 
-        private int humidity;
+        private double? temperature;
 
-        private double pressure;
+        private int? humidity;
+
+        private double? pressure;
 
         private string cityName;
 
+        private string status;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainViewModel()
+        public MainViewModel(ICommandFactory commandFactory)
         {
-            this.GetResultsCommand = new GetResultsCommand(new MeteorServiceClient(), new DateTimeToUnixConverter());
-            this.GetResultsCommand.ResultsChanged += this.HandleResultsChanged;
+            this.commandFactory = commandFactory;
+            this.CityName = null;
+            this.GetResultsCommand = this.commandFactory.CreateCommand(this);
         }
 
-        void HandleResultsChanged(object sender, System.EventArgs e)
-        {
-            this.Temperature = this.GetResultsCommand.Temperature;
-            this.Humidity = this.GetResultsCommand.Humidity;
-            this.Pressure = this.GetResultsCommand.Pressure;
-            this.CityName = this.GetResultsCommand.CityName;
-        }
-
-        public double Temperature
+        public double? Temperature
         {
             get
             {
@@ -52,7 +49,7 @@
             }
         }
 
-        public int Humidity
+        public int? Humidity
         {
             get
             {
@@ -71,7 +68,7 @@
             }
         }
 
-        public double Pressure
+        public double? Pressure
         {
             get
             {
@@ -105,6 +102,25 @@
                 }
 
                 this.cityName = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                if (value == this.status)
+                {
+                    return;
+                }
+
+                this.status = value;
                 this.OnPropertyChanged();
             }
         }

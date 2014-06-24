@@ -63,56 +63,83 @@ namespace MeteoRMobile
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060008
-			public const int cityNameData = 2131099656;
+			// aapt resource value: 0x7f06000a
+			public const int cityNameData = 2131099658;
 			
-			// aapt resource value: 0x7f060007
-			public const int cityNameText = 2131099655;
+			// aapt resource value: 0x7f060009
+			public const int cityNameText = 2131099657;
 			
 			// aapt resource value: 0x7f060001
 			public const int gridView1 = 2131099649;
 			
-			// aapt resource value: 0x7f060010
-			public const int humidityData = 2131099664;
+			// aapt resource value: 0x7f060018
+			public const int humidityData = 2131099672;
 			
-			// aapt resource value: 0x7f06000f
-			public const int humidityText = 2131099663;
+			// aapt resource value: 0x7f060017
+			public const int humidityText = 2131099671;
+			
+			// aapt resource value: 0x7f060019
+			public const int humidityUnit = 2131099673;
 			
 			// aapt resource value: 0x7f060000
 			public const int meteorData = 2131099648;
 			
-			// aapt resource value: 0x7f06000e
-			public const int pressureData = 2131099662;
+			// aapt resource value: 0x7f060014
+			public const int pressureData = 2131099668;
 			
-			// aapt resource value: 0x7f06000d
-			public const int pressureText = 2131099661;
+			// aapt resource value: 0x7f060013
+			public const int pressureText = 2131099667;
+			
+			// aapt resource value: 0x7f060015
+			public const int pressureUnit = 2131099669;
 			
 			// aapt resource value: 0x7f060003
 			public const int receiveData = 2131099651;
 			
-			// aapt resource value: 0x7f060006
-			public const int stationIdData = 2131099654;
+			// aapt resource value: 0x7f060007
+			public const int stationIdData = 2131099655;
 			
 			// aapt resource value: 0x7f060002
 			public const int stationIdInput = 2131099650;
 			
-			// aapt resource value: 0x7f060005
-			public const int stationIdText = 2131099653;
-			
-			// aapt resource value: 0x7f06000c
-			public const int temperatureData = 2131099660;
-			
-			// aapt resource value: 0x7f06000b
-			public const int temperatureText = 2131099659;
+			// aapt resource value: 0x7f060006
+			public const int stationIdText = 2131099654;
 			
 			// aapt resource value: 0x7f060004
-			public const int textView1 = 2131099652;
+			public const int tableLayout1 = 2131099652;
 			
-			// aapt resource value: 0x7f06000a
-			public const int timestampData = 2131099658;
+			// aapt resource value: 0x7f060005
+			public const int tableRow1 = 2131099653;
 			
-			// aapt resource value: 0x7f060009
-			public const int timestampText = 2131099657;
+			// aapt resource value: 0x7f060008
+			public const int tableRow2 = 2131099656;
+			
+			// aapt resource value: 0x7f06000b
+			public const int tableRow3 = 2131099659;
+			
+			// aapt resource value: 0x7f06000e
+			public const int tableRow4 = 2131099662;
+			
+			// aapt resource value: 0x7f060012
+			public const int tableRow5 = 2131099666;
+			
+			// aapt resource value: 0x7f060016
+			public const int tableRow6 = 2131099670;
+			
+			// aapt resource value: 0x7f060010
+			public const int temperatureData = 2131099664;
+			
+			// aapt resource value: 0x7f06000f
+			public const int temperatureText = 2131099663;
+			
+			// aapt resource value: 0x7f060011
+			public const int temperatureUnit = 2131099665;
+			
+			// aapt resource value: 0x7f06000d
+			public const int timestampData = 2131099661;
+			
+			// aapt resource value: 0x7f06000c
+			public const int timestampText = 2131099660;
 			
 			static Id()
 			{
