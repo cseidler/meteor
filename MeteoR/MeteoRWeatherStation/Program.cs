@@ -14,6 +14,8 @@ namespace MeteoRWeatherStation
 
     public partial class Program
     {
+        private const string ServiceUri = "http://192.168.1.31:3074/api/weatherinfo";
+
         private readonly WeatherInfo weatherInfo = new WeatherInfo();
 
         // This method is run when the mainboard is powered up or reset.   
@@ -39,7 +41,24 @@ namespace MeteoRWeatherStation
 
         private void NotifyServer(GT.Timer timer)
         {
-            this.CreateRequest(string.Empty);
+            HttpWebRequest httpWebRequest = this.CreateRequest();
+
+            string jsonString = "{ \"Id\" : \""+this.weatherInfo.Id 
+                + "\", \"CityName\" : \"" + this.weatherInfo.CityName
+                + "\",\"Timestamp\" : \""+ this.weatherInfo.Timestamp
+                + "\",\"Temperature\" : \""+ this.weatherInfo.Temperature
+                + "\",\"Humidity\" : \""+ this.weatherInfo.Humidity
+                + "\",\"Pressure\" : \""+ this.weatherInfo.Pressure + "\" }";
+            httpWebRequest.ContentLength = jsonString.Length;
+
+            try
+            {
+                 this.GetResponse(httpWebRequest, jsonString);
+            }
+            catch (Exception e)
+            {
+                
+            }
         }
 
         void TemperatureHumidity_MeasurementComplete(TemperatureHumidity sender, double temperature, double relativeHumidity)
@@ -57,13 +76,13 @@ namespace MeteoRWeatherStation
             this.weatherInfo.Pressure = sensorData.Pressure;
         }
 
-        private HttpWebRequest CreateRequest(string suffixURI)
+        private HttpWebRequest CreateRequest()
         {
-            var baseURI = "";
-            Uri serviceEndPoint = new Uri(baseURI + suffixURI);
+            Uri serviceEndPoint = new Uri(ServiceUri);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(serviceEndPoint);
+            request.Method = "POST";
             // Set the APIKey as the Authorization header field to use for this request.
-            request.Headers.Add("Authorization", "APIKey " + this.apiKey);
+            //request.Headers.Add("Authorization", "APIKey " + this.apiKey);
             //request.Headers.Add("Authorization", "APIKey " + this.apiKey);
             request.ContentType = "application/json; charset=utf-8";
             return request;

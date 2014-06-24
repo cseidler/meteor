@@ -7,5 +7,6 @@
     public interface IMeteorServiceClient
     {
         Task<WeatherInfo> GetWeatherInfo(int id, long timestamp);
+        Task PostWeatherInfo(WeatherInfo weatherInfo);
     }
 }

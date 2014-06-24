@@ -10,7 +10,7 @@
 
     public class GetResultsCommand : IGetResultsCommand
     {
-        private const int StationId = 1234;
+        private const int StationId = 0;
 
         private readonly IMainViewModel viewModel;
 

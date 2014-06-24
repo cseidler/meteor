@@ -1,19 +1,14 @@
 ﻿namespace MeteoRInterfaceModel
 {
-    using System;
-    using System.IO;
     using System.Net.Http;
+    using System.Net.Http.Formatting;
     using System.Threading.Tasks;
 
     using MeteoRClient;
 
-    using Newtonsoft.Json;
-
-    using RestSharp.Portable;
-
     public class MeteorServiceClient : IMeteorServiceClient
     {
-        private const string ServiceUri = "http://169.254.200.201:3074/api/weatherinfo";
+        private const string ServiceUri = "http://192.168.1.31:3074/api/weatherinfo";
 
         public async Task<WeatherInfo> GetWeatherInfo(int id, long timestamp)
         {
@@ -25,6 +20,15 @@
                 response.EnsureSuccessStatusCode();
 
                 return await response.Content.ReadAsAsync<WeatherInfo>().ConfigureAwait(false);
+            }
+        }
+
+        public async Task PostWeatherInfo(WeatherInfo weatherInfo)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.PostAsync(ServiceUri, weatherInfo, new JsonMediaTypeFormatter()).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
             }
         }
     }
