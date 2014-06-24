@@ -1,6 +1,8 @@
 ﻿namespace MeteoRClient.MainWindow
 {
     using System;
+    using System.Net.Http;
+    using System.Threading.Tasks;
 
     using MeteoRClient.Properties;
 
@@ -29,7 +31,7 @@
 
         public bool CanExecute(object parameter)
         {
-            return !isUpdating;
+            return !this.isUpdating;
         }
 
         public async void Execute(object parameter)
@@ -39,19 +41,34 @@
                 this.SetIsUpdating(true);
                 this.viewModel.Status = Resources.GetResultsCommandUpdatingValues;
 
-                var utcNowAsUnixTimestamp = this.dateTimeToUnixConverter.DateTimeToUnixTimeStamp(DateTime.UtcNow);
-                var weatherInfo = await this.meteorServiceClient.GetWeatherInfo(StationId, utcNowAsUnixTimestamp);
+                var weatherInfo = await this.GetWeatherInfoFromService();
 
-                this.viewModel.Temperature = weatherInfo.Temperature;
-                this.viewModel.Pressure = weatherInfo.Pressure;
-                this.viewModel.Humidity = weatherInfo.Humidity;
-                this.viewModel.CityName = weatherInfo.CityName;
+                this.UpdateViewModel(weatherInfo);
+                this.viewModel.Status = string.Empty;
+            }
+            catch (HttpRequestException e)
+            {
+                this.viewModel.Status = e.Message;
             }
             finally
             {
-                this.viewModel.Status = string.Empty;
                 this.SetIsUpdating(false);
             }
+        }
+
+        private async Task<WeatherInfo> GetWeatherInfoFromService()
+        {
+            var utcNowAsUnixTimestamp = this.dateTimeToUnixConverter.DateTimeToUnixTimeStamp(DateTime.UtcNow);
+            var weatherInfo = await this.meteorServiceClient.GetWeatherInfo(StationId, utcNowAsUnixTimestamp);
+            return weatherInfo;
+        }
+
+        private void UpdateViewModel(WeatherInfo weatherInfo)
+        {
+            this.viewModel.Temperature = weatherInfo.Temperature;
+            this.viewModel.Pressure = weatherInfo.Pressure;
+            this.viewModel.Humidity = weatherInfo.Humidity;
+            this.viewModel.CityName = weatherInfo.CityName;
         }
 
         private void SetIsUpdating(bool updating)
