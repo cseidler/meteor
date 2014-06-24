@@ -64,8 +64,6 @@ namespace MeteoRMobile
 
             var intent = new Intent(this, typeof(WeatherResultActivity));
 
-            intent.PutExtra(weatherData);
-
             StartActivity(intent);
 
             /*

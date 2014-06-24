@@ -1,11 +1,15 @@
-﻿using System;
-
-namespace MeteoRInterfaceModel
+﻿namespace MeteoRInterfaceModel
 {
+    using System;
+    using System.IO;
     using System.Net.Http;
     using System.Threading.Tasks;
 
     using MeteoRClient;
+
+    using Newtonsoft.Json;
+
+    using RestSharp.Portable;
 
     public class MeteorServiceClient : IMeteorServiceClient
     {
@@ -13,39 +17,10 @@ namespace MeteoRInterfaceModel
 
         public async Task<WeatherInfo> GetWeatherInfo(int id, long timestamp)
         {
-            var uri = string.Format("{0}/?id={1}&timestamp={2}", ServiceUri, id, timestamp);
-            HttpResponseMessage response = null;
-
-            Task serviceCall = Task.Factory.StartNew(() =>
-            {
-                using (var httpClient = new HttpClient())
-                {
-                    response = httpClient.GetAsync(uri).Result;
-                }
-            });
-
-            //Task.Factory.StartNew(() =>
-            //{
-            //    using (var httpClient = new HttpClient())
-            //    {
-            //        response = httpClient.GetAsync(uri).Result;
-            //    }
-            //});
-
-            try
-            {
-                serviceCall.Wait();
-            }
-            catch (Exception)
-            {
-                
-                throw;
-            }
-
-            response.EnsureSuccessStatusCode();
-
-            return await response.Content.ReadAsAsync<WeatherInfo>().ConfigureAwait(false);
-
+            var restRequest = new RestRequest(string.Format("{0}?id={1}&timestamp={2}", ServiceUri, id, timestamp), HttpMethod.Get);
+            IRestResponse restResponse = await new RestClient().Execute(restRequest).ConfigureAwait(false);
+            TextReader reader = new StringReader(Convert.ToBase64String(restResponse.RawBytes));
+            return new JsonSerializer().Deserialize<WeatherInfo>(new JsonTextReader(reader));
         }
     }
 }
