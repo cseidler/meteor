@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:MeteoRClient.MainWindow"
         Title="MainView"
         Width="525"
-        Height="350">
+        Height="388">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
@@ -15,6 +15,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
+                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -43,6 +44,11 @@
             <Label Grid.Row="5"
                      Grid.Column="0"
                      Content="Pressure"
+                     Margin="15,0,0,0"/>
+            <Label Grid.Row="6"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     Content="{Binding Status}"
                      Margin="15,0,0,0"/>
             <Label Grid.Row="2"
                      Grid.Column="1">

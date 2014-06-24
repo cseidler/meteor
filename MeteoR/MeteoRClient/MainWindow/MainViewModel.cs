@@ -17,21 +17,14 @@
 
         private string cityName;
 
+        private string status;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainViewModel()
         {
             this.CityName = null;
-            this.GetResultsCommand = new GetResultsCommand(new MeteorServiceClient(), new DateTimeToUnixConverter());
-            this.GetResultsCommand.ResultsChanged += this.HandleResultsChanged;
-        }
-
-        void HandleResultsChanged(object sender, System.EventArgs e)
-        {
-            this.Temperature = this.GetResultsCommand.Temperature;
-            this.Humidity = this.GetResultsCommand.Humidity;
-            this.Pressure = this.GetResultsCommand.Pressure;
-            this.CityName = this.GetResultsCommand.CityName;
+            this.GetResultsCommand = new GetResultsCommand(this, new MeteorServiceClient(), new DateTimeToUnixConverter());
         }
 
         public double? Temperature
@@ -106,6 +99,25 @@
                 }
 
                 this.cityName = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public string Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                if (value == this.status)
+                {
+                    return;
+                }
+
+                this.status = value;
                 this.OnPropertyChanged();
             }
         }
