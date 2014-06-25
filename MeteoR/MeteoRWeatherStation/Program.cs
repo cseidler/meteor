@@ -31,6 +31,7 @@ namespace MeteoRWeatherStation
             // Event that fires when a measurement is ready
             temperatureHumidity.MeasurementComplete += this.TemperatureHumidity_MeasurementComplete;
             barometer.MeasurementComplete += this.Barometer_MeasurementComplete;
+            gasSense.SetHeatingElement(true);
 
             // Start continuous measurements.
             temperatureHumidity.StartContinuousMeasurements();
@@ -38,7 +39,7 @@ namespace MeteoRWeatherStation
             barometer.StartContinuousMeasurements();
 
             // Start notifying server
-            GT.Timer timer = new GT.Timer(10000); // every 10 seconds
+            GT.Timer timer = new GT.Timer(5000); // every 10 seconds
             timer.Tick += this.NotifyServer;
             timer.Start();
         }
@@ -52,16 +53,19 @@ namespace MeteoRWeatherStation
                 + "\",\"Timestamp\" : \""+ this.weatherInfo.Timestamp
                 + "\",\"Temperature\" : \""+ this.weatherInfo.Temperature
                 + "\",\"Humidity\" : \""+ this.weatherInfo.Humidity
-                + "\",\"Pressure\" : \""+ this.weatherInfo.Pressure + "\" }";
+                + "\",\"Pressure\" : \"" + this.weatherInfo.Pressure
+                + "\",\"GasVoltage\" : \"" + this.weatherInfo.GasVoltage
+                + "\" }";
             httpWebRequest.ContentLength = jsonString.Length;
 
             try
             {
-                 this.GetResponse(httpWebRequest, jsonString);
+                this.GetResponse(httpWebRequest, jsonString);
+                Debug.Print("+++ Data send to server");
             }
             catch (Exception e)
             {
-                
+                Debug.Print("+++ Exception while notifying server.");
             }
         }
 
@@ -71,6 +75,10 @@ namespace MeteoRWeatherStation
 
             this.weatherInfo.Temperature = temperature;
             this.weatherInfo.Humidity = (int)relativeHumidity;
+
+            double gasVoltage = gasSense.ReadVoltage();
+            this.weatherInfo.GasVoltage = gasVoltage;
+            Debug.Print("GasVoltage: " + gasVoltage);
         }
 
         void Barometer_MeasurementComplete(Barometer sender, Barometer.SensorData sensorData)
@@ -86,7 +94,6 @@ namespace MeteoRWeatherStation
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(serviceEndPoint);
             request.Method = "POST";
             // Set the APIKey as the Authorization header field to use for this request.
-            //request.Headers.Add("Authorization", "APIKey " + this.apiKey);
             //request.Headers.Add("Authorization", "APIKey " + this.apiKey);
             request.ContentType = "application/json; charset=utf-8";
             return request;

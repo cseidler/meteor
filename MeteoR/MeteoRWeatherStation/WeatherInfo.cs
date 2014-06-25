@@ -13,5 +13,7 @@
         public double Pressure { get; set; }
 
         public int Humidity { get; set; }
+
+        public double GasVoltage { get; set; }
     }
 }
