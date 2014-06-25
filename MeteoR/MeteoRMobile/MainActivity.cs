@@ -13,7 +13,10 @@ namespace MeteoRMobile
     {
         private Button receiveDataButton;
         private TextView stationIdInput;
-        
+        private Button weatherStation71;
+        private Button weatherStation10;
+        private Button weatherStation54;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -23,9 +26,37 @@ namespace MeteoRMobile
             stationIdInput = FindViewById<TextView>(Resource.Id.stationIdInput);
             receiveDataButton = FindViewById<Button>(Resource.Id.receiveData);
 
+            weatherStation10 = FindViewById<Button>(Resource.Id.weatherStation10);
+            weatherStation54 = FindViewById<Button>(Resource.Id.weatherStation54);
+            weatherStation71 = FindViewById<Button>(Resource.Id.weatherStation71);
+
             // Get our button from the layout resource,
             // and attach an event to it
-            receiveDataButton.Click += ReceiveDataButtonOnClick;  
+            receiveDataButton.Click += ReceiveDataButtonOnClick;
+            weatherStation10.Click += ReceiveWeatherStation10DataButtonOnClick;
+            weatherStation54.Click += ReceiveWeatherStation54DataButtonOnClick;
+            weatherStation71.Click += ReceiveWeatherStation71DataButtonOnClick;
+        }
+
+        private void ReceiveWeatherStation10DataButtonOnClick(object sender, EventArgs e)
+        {
+            var intent = new Intent(this, typeof(WeatherResultActivity));
+            intent.PutExtra("stationId", 10);
+            StartActivity(intent);
+        }
+
+        private void ReceiveWeatherStation54DataButtonOnClick(object sender, EventArgs e)
+        {
+            var intent = new Intent(this, typeof(WeatherResultActivity));
+            intent.PutExtra("stationId", 54);
+            StartActivity(intent);
+        }
+
+        private void ReceiveWeatherStation71DataButtonOnClick(object sender, EventArgs e)
+        {
+            var intent = new Intent(this, typeof(WeatherResultActivity));
+            intent.PutExtra("stationId", 71);
+            StartActivity(intent);
         }
 
         private async void ReceiveDataButtonOnClick(object sender, EventArgs eventArgs)

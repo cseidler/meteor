@@ -12,6 +12,6 @@
 
         public double Pressure { get; set; }
 
-        public int Humidity { get; set; }
+        public double Humidity { get; set; }
     }
 }

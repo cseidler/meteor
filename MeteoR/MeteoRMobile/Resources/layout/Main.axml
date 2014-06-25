@@ -98,8 +98,19 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:id="@+id/humidityData" />-->
-    <AnalogClock
+    <Button
+        android:text="Weather station 10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/analogClock1" />
+        android:id="@+id/weatherStation10" />
+    <Button
+        android:text="Weather station 54"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherStation54" />
+    <Button
+        android:text="Weather station 71"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherStation71" />
 </LinearLayout>
