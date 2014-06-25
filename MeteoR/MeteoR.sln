@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeteoRClient.Test", "MeteoR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeteoRInterfaceModel.Test", "MeteoRInterfaceModel.Test\MeteoRInterfaceModel.Test.csproj", "{761C8E25-C9DE-47DB-B34E-86818EEC3A57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeteoRWeatherStation", "MeteoRWeatherStation\MeteoRWeatherStation.csproj", "{98ED3268-A567-48CF-A6F1-10CACE9AF222}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -186,6 +188,38 @@ Global
 		{761C8E25-C9DE-47DB-B34E-86818EEC3A57}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{761C8E25-C9DE-47DB-B34E-86818EEC3A57}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{761C8E25-C9DE-47DB-B34E-86818EEC3A57}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Ad-Hoc|Any CPU.Deploy.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Ad-Hoc|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Ad-Hoc|Mixed Platforms.Build.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Ad-Hoc|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.AppStore|Any CPU.Build.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.AppStore|Any CPU.Deploy.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.AppStore|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.AppStore|Mixed Platforms.Build.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.AppStore|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{98ED3268-A567-48CF-A6F1-10CACE9AF222}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,15 +1,10 @@
 ﻿namespace MeteoRInterfaceModel
 {
-    using System;
-    using System.IO;
     using System.Net.Http;
+    using System.Net.Http.Formatting;
     using System.Threading.Tasks;
 
     using MeteoRClient;
-
-    using Newtonsoft.Json;
-
-    using RestSharp.Portable;
 
     public class MeteorServiceClient : IMeteorServiceClient
     {
@@ -25,6 +20,15 @@
                 response.EnsureSuccessStatusCode();
 
                 return await response.Content.ReadAsAsync<WeatherInfo>().ConfigureAwait(false);
+            }
+        }
+
+        public async Task PostWeatherInfo(WeatherInfo weatherInfo)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.PostAsync(ServiceUri, weatherInfo, new JsonMediaTypeFormatter()).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
             }
         }
     }
