@@ -3,15 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:MeteoRClient.MainWindow"
         Title="MeteoR"
         Width="525"
-        Height="388">
+        Height="464">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="15,0,0,0" />
         </Style>
     </Window.Resources>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
+                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -28,40 +32,42 @@
             <Button Grid.Row="1" Grid.ColumnSpan="2" Margin="20,5" Content="Get Result" Command="{Binding GetResultsCommand}" />
             <Label Grid.Row="2"
                      Grid.Column="0"
-                     Content="City"
-                     Margin="15,0,0,0"/>
+                     Content="City" />
             <Label Grid.Row="3"
                      Grid.Column="0"
-                     Content="Temperature"
-                     Margin="15,0,0,0"/>
+                     Content="Time" />
             <Label Grid.Row="4"
                      Grid.Column="0"
-                     Content="Humidity"
-                     Margin="15,0,0,0"/>
+                     Content="Temperature"/>
             <Label Grid.Row="5"
                      Grid.Column="0"
-                     Content="Pressure"
-                     Margin="15,0,0,0"/>
+                     Content="Humidity"/>
             <Label Grid.Row="6"
                      Grid.Column="0"
+                     Content="Pressure"/>
+            <Label Grid.Row="7"
+                     Grid.Column="0"
                      Grid.ColumnSpan="2"
-                     Content="{Binding Status}"
-                     Margin="15,0,0,0"/>
+                     Content="{Binding Status}"/>
             <Label Grid.Row="2"
                      Grid.Column="1">
             <TextBlock Text="{Binding Path=CityName, TargetNullValue='n/a'}" />
             </Label>
             <Label Grid.Row="3"
                      Grid.Column="1">
-            <TextBlock Text="{Binding Path=Temperature, TargetNullValue='n/a', StringFormat={}{0} °C}" />
+            <TextBlock Text="{Binding Path=Time, TargetNullValue='n/a', StringFormat={}{0:HH:mm:ss - dd.MM.yy}}" />
             </Label>
             <Label Grid.Row="4"
                      Grid.Column="1">
-                <TextBlock Text="{Binding Path=Humidity, TargetNullValue='n/a', StringFormat={}{0} %}" />
+            <TextBlock Text="{Binding Path=Temperature, TargetNullValue='n/a', StringFormat={}{0:##.#} °C}" />
             </Label>
             <Label Grid.Row="5"
                      Grid.Column="1">
-            <TextBlock Text="{Binding Path=Pressure, TargetNullValue='n/a', StringFormat={}{0} kPa}" />
+                <TextBlock Text="{Binding Path=Humidity, TargetNullValue='n/a', StringFormat={}{0} %}" />
+            </Label>
+            <Label Grid.Row="6"
+                     Grid.Column="1">
+            <TextBlock Text="{Binding Path=Pressure, TargetNullValue='n/a', StringFormat={}{0:##.#} kPa}" />
             </Label>
         </Grid>
 </Window>

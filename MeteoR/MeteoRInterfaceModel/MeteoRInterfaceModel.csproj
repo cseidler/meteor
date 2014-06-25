@@ -41,9 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DateTimeToUnixConverter.cs" />
+    <Compile Include="DummyMeteorServiceClient.cs" />
     <Compile Include="IDateTimeToUnixConverter.cs" />
     <Compile Include="IMeteorServiceClient.cs" />
     <Compile Include="MeteorServiceClient.cs" />
+    <Compile Include="Station.cs" />
     <Compile Include="WeatherInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
