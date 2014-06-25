@@ -69,6 +69,7 @@
             this.viewModel.Pressure = weatherInfo.Pressure;
             this.viewModel.Humidity = weatherInfo.Humidity;
             this.viewModel.CityName = weatherInfo.CityName;
+            this.viewModel.Time = this.dateTimeToUnixConverter.UnixTimeStampToDateTime(weatherInfo.Timestamp).ToLocalTime();
         }
 
         private void SetIsUpdating(bool updating)

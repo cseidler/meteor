@@ -1,5 +1,6 @@
 ﻿namespace MeteoRClient.MainWindow
 {
+    using System;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
@@ -20,6 +21,8 @@
         private string cityName;
 
         private string status;
+
+        private DateTime? time;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -121,6 +124,25 @@
                 }
 
                 this.status = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public DateTime? Time
+        {
+            get
+            {
+                return this.time;
+            }
+
+            set
+            {
+                if (value.Equals(this.time))
+                {
+                    return;
+                }
+
+                this.time = value;
                 this.OnPropertyChanged();
             }
         }
