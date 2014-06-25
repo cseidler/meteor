@@ -13,7 +13,7 @@
 
     public class MeteorServiceClient : IMeteorServiceClient
     {
-        private const string ServiceUri = "http://169.254.200.201:3074/api/weatherinfo";
+        private const string ServiceUri = "http://192.168.1.31:3074/api/weatherinfo";
 
         public async Task<WeatherInfo> GetWeatherInfo(int id, long timestamp)
         {
