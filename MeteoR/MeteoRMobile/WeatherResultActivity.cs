@@ -51,16 +51,10 @@ namespace MeteoRMobile
         {
             try
             {
-                weatherInfo = await this.service.GetWeatherInfo(stationId, 456);
+                weatherInfo = await this.service.GetWeatherInfo(stationId, new DateTimeToUnixConverter().DateTimeToUnixTimeStamp(DateTime.Now));
 
                 RunOnUiThread(() =>
                 {
-                    //stationIdData.Text = "1";
-                    //cityNameData.Text = "Moskau";
-                    //timestampData.Text = DateTime.Now.ToShortDateString().ToString(CultureInfo.InvariantCulture);
-                    //temperatureData.Text = "18";
-                    //pressureData.Text = "886";
-                    //humidityData.Text = "20";
                     stationIdData.Text = weatherInfo.Id.ToString(CultureInfo.InvariantCulture);
                     cityNameData.Text = weatherInfo.CityName;
                     timestampData.Text = weatherInfo.Timestamp.ToString(CultureInfo.InvariantCulture);
