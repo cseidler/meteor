@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:MeteoRClient.MainWindow"
         Title="MeteoR"
         Width="525"
-        Height="388">
+        Height="464">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
@@ -15,6 +15,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
+                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -34,14 +35,17 @@
                      Content="City" />
             <Label Grid.Row="3"
                      Grid.Column="0"
-                     Content="Temperature"/>
+                     Content="Time" />
             <Label Grid.Row="4"
                      Grid.Column="0"
-                     Content="Humidity"/>
+                     Content="Temperature"/>
             <Label Grid.Row="5"
                      Grid.Column="0"
-                     Content="Pressure"/>
+                     Content="Humidity"/>
             <Label Grid.Row="6"
+                     Grid.Column="0"
+                     Content="Pressure"/>
+            <Label Grid.Row="7"
                      Grid.Column="0"
                      Grid.ColumnSpan="2"
                      Content="{Binding Status}"/>
@@ -51,15 +55,19 @@
             </Label>
             <Label Grid.Row="3"
                      Grid.Column="1">
-            <TextBlock Text="{Binding Path=Temperature, TargetNullValue='n/a', StringFormat={}{0} °C}" />
+            <TextBlock Text="{Binding Path=Time, TargetNullValue='n/a', StringFormat={}{0:HH:mm:ss - dd.MM.yy}}" />
             </Label>
             <Label Grid.Row="4"
                      Grid.Column="1">
-                <TextBlock Text="{Binding Path=Humidity, TargetNullValue='n/a', StringFormat={}{0} %}" />
+            <TextBlock Text="{Binding Path=Temperature, TargetNullValue='n/a', StringFormat={}{0:##.#} °C}" />
             </Label>
             <Label Grid.Row="5"
                      Grid.Column="1">
-            <TextBlock Text="{Binding Path=Pressure, TargetNullValue='n/a', StringFormat={}{0} kPa}" />
+                <TextBlock Text="{Binding Path=Humidity, TargetNullValue='n/a', StringFormat={}{0} %}" />
+            </Label>
+            <Label Grid.Row="6"
+                     Grid.Column="1">
+            <TextBlock Text="{Binding Path=Pressure, TargetNullValue='n/a', StringFormat={}{0:##.#} kPa}" />
             </Label>
         </Grid>
 </Window>
