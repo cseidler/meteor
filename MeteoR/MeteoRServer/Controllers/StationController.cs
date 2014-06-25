@@ -12,7 +12,7 @@ namespace MeteoRServer.Controllers
         // GET api/station
         public IEnumerable<Station> Get()
         {
-            return WeatherInfoController.WeatherInfo.Select(x => new Station { Id = x.Id, CityName = x.CityName }).Distinct();
+            return WeatherInfoController.WeatherInfo.Select(x => new Station { Id = x.Id, CityName = x.CityName }).Distinct(new StationEqualityComparer());
         }
     }
 }
