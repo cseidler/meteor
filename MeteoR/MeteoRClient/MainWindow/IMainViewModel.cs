@@ -7,7 +7,7 @@
     {
         double? Temperature { get; set; }
 
-        int? Humidity { get; set; }
+        double? Humidity { get; set; }
 
         double? Pressure { get; set; }
 

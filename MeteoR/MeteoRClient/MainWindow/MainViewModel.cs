@@ -14,7 +14,7 @@
 
         private double? temperature;
 
-        private int? humidity;
+        private double? humidity;
 
         private double? pressure;
 
@@ -52,7 +52,7 @@
             }
         }
 
-        public int? Humidity
+        public double? Humidity
         {
             get
             {
