@@ -24,6 +24,10 @@ namespace MeteoRWeatherStation
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started: *******************************************************************************************");
 
+            // Setup weather station
+            this.weatherInfo.CityName = "Davos";
+            this.weatherInfo.Id = 0;
+
             // Event that fires when a measurement is ready
             temperatureHumidity.MeasurementComplete += this.TemperatureHumidity_MeasurementComplete;
             barometer.MeasurementComplete += this.Barometer_MeasurementComplete;
